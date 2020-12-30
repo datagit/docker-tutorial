@@ -1,0 +1,43 @@
+version: "3.8"
+services:
+  profuku-server:
+    build: ./pro-api
+    container_name: profuku-server
+    ports:
+      - 80:80
+    volumes:
+      - ./pro-api:/server/
+      - /server/node_modules
+    environment:
+      - NODE_ENV=local
+    command: "npm run dev"
+    links:
+      - "profuku_redis"
+    networks:
+      - ec_network
+  profuku_redis:
+    image: "redis:alpine"
+    container_name: profuku_redis
+    hostname: profuku_redis
+    ports:
+      - 6379:6379
+    networks:
+      - ec_network
+  # profuku-socket:
+  #   container_name: profuku-socket
+  #   build: ./pro_socket
+  #   ports:
+  #     - 6001:6001
+  #   volumes:
+  #     - ./pro_socket:/app/
+  #     - /app/node_modules
+  #   environment:
+  #     - NODE_ENV=local
+  #   entrypoint: ["npm", "run", "dev"]
+  #   links:
+  #     - "profuku_redis"
+  #     - "profuku-server:api.parse.local"
+  #   networks:
+  #     - ec_network
+networks:
+  ec_network:
