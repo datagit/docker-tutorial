@@ -1,0 +1,41 @@
+doc: https://xuanthulab.net/tra-cuu-thong-tin-image-va-giam-sat-cac-container-trong-docker.html
+- docker: https://docs.docker.com/get-started/overview/
+- docker:
+  - client docker CLI
+  - REST API
+  - server docker daemon
+- docker architecture
+  - client docker(docker)
+    - docker build
+    - docker pull
+    - docker run
+  - docker_host
+    - server docker daemon(dockerd)
+      - docker objects
+        - containers
+        - images
+        - networks
+        - volumes
+  - registry
+    - [docker hub](https://hub.docker.com/)
+    - storage images, for share, for download
+- client docker CLI(docker)
+  - core OS
+  - images
+  - containers
+  - data volumes
+  - networks
+------------------------------------------
+- Dockerfile:
+  - là một file cấu hình để sinh ra image
+  - sử dụng Dockerfile là cách tự động hoá việc
+    - tạo container
+    - chạy container
+    - sử dụng container
+- image = như là ảnh chụp lại cấu hình của container
+  - only read
+  - platform image: là một image không có image cha
+- container = image + layer(able write)
+  - image
+  - layer able write
+  - create new image = old image(image cha) + layer(able write) by cmd(docker commit)
