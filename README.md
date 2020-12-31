@@ -32,7 +32,7 @@ docker-tutorial-practices
             docker container rm CONTAINER_ID
             docker exec -it CONTAINER_ID BASH_COMMAND
             # run BASH_COMMAND in running container
-            
+
 
         ```
 - https://xuanthulab.net/chia-se-du-lieu-giua-docker-host-va-container.html
@@ -41,3 +41,17 @@ docker-tutorial-practices
   - in container copy file config to mount_folder: for edit config from host
   - chia se du lieu giup cac container
   - mount o dia vao container
+- Docker CMD Vs Entrypoint Commands: What's The Difference?: https://phoenixnap.com/kb/docker-cmd-vs-entrypoint#:~:text=CMD%20is%20an%20instruction%20that,container%20with%20a%20specific%20executable.
+  - The syntax for any command in shell form is:
+    - <instruction> <command>
+  - The syntax for instructions in exec form is:
+    - <instruction> [“executable”, “parameter”]
+  - ex: You can write Docker CMD/ENTRYPOINT instructions in both forms:
+    ```bash
+        CMD echo “Hello World” (shell form)
+        CMD ["echo", "Hello World"] (exec form)
+        ENTRYPOINT echo "Hello World" (shell form)
+        ENTRYPOINT ["echo", "Hello World"] (exec form)
+    ```
+  - What is the difference between CMD and ENTRYPOINT? You cannot override the ENTRYPOINT instruction by adding command-line parameters to the docker run command. By opting for this instruction, you imply that the container is specifically built for such use.
+  - luon luon dung ENTRYPOINT de RUN command in container
