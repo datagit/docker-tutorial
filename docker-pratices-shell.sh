@@ -17,3 +17,5 @@ docker run -v $(pwd)/configs:/c-tmp -it ubuntu
 # in container cp file config into /c-tmp
 # in host edit file config
 # from Dockerfile run service by config
+docker container prune
+# Removes all stopped containers.
