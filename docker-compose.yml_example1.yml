@@ -1,0 +1,37 @@
+# https://docs.docker.com/compose/wordpress/
+# step1: image [db], image [wordpress]
+# step2: image[wordpress] depends on image[db]
+# detail info
+# MYSQL_ROOT_PASSWORD => https://dev.mysql.com/doc/refman/5.7/en/docker-mysql-more-topics.html#:~:text=MYSQL_ROOT_PASSWORD%20%3A%20This%20variable%20specifies%20a,for%20the%20MySQL%20root%20account.&text=As%20an%20alternative%20to%20specifying,at%20the%20container%20file%20path.
+# WORDPRESS_DB_HOST => https://hub.docker.com/_/wordpress
+# laravel
+# https://www.digitalocean.com/community/tutorials/how-to-set-up-laravel-nginx-and-mysql-with-docker-compose#step-4-%E2%80%94-creating-the-dockerfile
+# https://hub.docker.com/r/laraveldev/php/dockerfile
+version: '3.3'
+
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: somewordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:latest
+    ports:
+      - '8000:80'
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+volumes:
+  db_data: {}
